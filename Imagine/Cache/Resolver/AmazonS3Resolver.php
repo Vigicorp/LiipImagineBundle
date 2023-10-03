@@ -101,6 +101,17 @@ class AmazonS3Resolver implements ResolverInterface
             return;
         }
 
+        // Add WEBP image format
+        {
+            if (!empty($paths)) {
+                foreach ($paths as $path) {
+                    $paths[] = $path . '.webp';
+                }
+
+                $paths = array_unique($paths);
+            }
+        }
+
         if (empty($paths)) {
             if (!$this->storage->delete_all_objects($this->bucket, sprintf('/%s/i', implode('|', $filters)))) {
                 $this->logError('The objects could not be deleted from Amazon S3.', [

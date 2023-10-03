@@ -134,6 +134,17 @@ class FlysystemResolver implements ResolverInterface
             return;
         }
 
+        // Add WEBP image format
+        {
+            if (!empty($paths)) {
+                foreach ($paths as $path) {
+                    $paths[] = $path . '.webp';
+                }
+
+                $paths = array_unique($paths);
+            }
+        }
+
         if (empty($paths)) {
             foreach ($filters as $filter) {
                 $filterCacheDir = $this->cacheRoot.'/'.$filter;

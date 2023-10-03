@@ -100,6 +100,17 @@ abstract class AbstractFilesystemResolver implements ResolverInterface, CacheMan
             return;
         }
 
+        // Add WEBP image format
+        {
+            if (!empty($paths)) {
+                foreach ($paths as $path) {
+                    $paths[] = $path . '.webp';
+                }
+
+                $paths = array_unique($paths);
+            }
+        }
+
         // TODO: this logic has to be refactored.
         [$rootCachePath] = explode(current($filters), $this->getFilePath('whateverpath', current($filters)));
 

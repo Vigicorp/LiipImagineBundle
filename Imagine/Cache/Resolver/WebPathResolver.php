@@ -88,6 +88,17 @@ class WebPathResolver implements ResolverInterface
             return;
         }
 
+        // Add WEBP image format
+        {
+            if (!empty($paths)) {
+                foreach ($paths as $path) {
+                    $paths[] = $path . '.webp';
+                }
+
+                $paths = array_unique($paths);
+            }
+        }
+
         if (empty($paths)) {
             $filtersCacheDir = [];
             foreach ($filters as $filter) {

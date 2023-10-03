@@ -87,6 +87,17 @@ class CacheResolver implements ResolverInterface
 
     public function remove(array $paths, array $filters)
     {
+        // Add WEBP image format
+        {
+            if (!empty($paths)) {
+                foreach ($paths as $path) {
+                    $paths[] = $path . '.webp';
+                }
+
+                $paths = array_unique($paths);
+            }
+        }
+
         $this->resolver->remove($paths, $filters);
 
         foreach ($filters as $filter) {

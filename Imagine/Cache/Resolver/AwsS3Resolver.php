@@ -131,6 +131,17 @@ class AwsS3Resolver implements ResolverInterface
             return;
         }
 
+        // Add WEBP image format
+        {
+            if (!empty($paths)) {
+                foreach ($paths as $path) {
+                    $paths[] = $path . '.webp';
+                }
+
+                $paths = array_unique($paths);
+            }
+        }
+
         if (empty($paths)) {
             try {
                 $this->storage->deleteMatchingObjects($this->bucket, null, sprintf(

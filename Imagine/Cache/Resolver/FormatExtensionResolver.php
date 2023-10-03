@@ -55,6 +55,17 @@ class FormatExtensionResolver implements ResolverInterface
 
     public function remove(array $paths, array $filters)
     {
+        // Add WEBP image format
+        {
+            if (!empty($paths)) {
+                foreach ($paths as $path) {
+                    $paths[] = $path . '.webp';
+                }
+
+                $paths = array_unique($paths);
+            }
+        }
+
         $newPaths = [];
         foreach ($paths as $path) {
             foreach ($filters as $filter) {
