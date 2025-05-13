@@ -55,9 +55,9 @@ class FilterService
         DataManager $dataManager,
         FilterManager $filterManager,
         CacheManager $cacheManager,
-        bool $webpGenerate,
-        array $webpOptions,
-        LoggerInterface $logger = null
+        bool $webpGenerate = false,
+        array $webpOptions = [],
+        ?LoggerInterface $logger = null
     ) {
         $this->dataManager = $dataManager;
         $this->filterManager = $filterManager;
@@ -96,7 +96,7 @@ class FilterService
     public function warmUpCache(
         string $path,
         string $filter,
-        string $resolver = null,
+        ?string $resolver = null,
         bool $forced = false
     ): bool {
         $warmedUp = false;
@@ -177,7 +177,7 @@ class FilterService
     private function resolveFilterPathContainer(
         FilterPathContainer $filterPathContainer,
         string $filter,
-        string $resolver = null,
+        ?string $resolver = null,
         bool $webpSupported = false
     ): string {
         $path = $filterPathContainer->getTarget();
@@ -197,7 +197,7 @@ class FilterService
     private function warmUpCacheFilterPathContainer(
         FilterPathContainer $filterPathContainer,
         string $filter,
-        string $resolver = null,
+        ?string $resolver = null,
         bool $forced = false
     ): bool {
         if ($forced || !$this->cacheManager->isStored($filterPathContainer->getTarget(), $filter, $resolver)) {
@@ -224,7 +224,7 @@ class FilterService
         try {
             return $this->filterManager->applyFilter($binary, $filter, $filterPathContainer->getOptions());
         } catch (NonExistingFilterException $e) {
-            $this->logger->debug(sprintf(
+            $this->logger->debug(\sprintf(
                 'Could not locate filter "%s" for path "%s". Message was "%s"',
                 $filter,
                 $filterPathContainer->getSource(),

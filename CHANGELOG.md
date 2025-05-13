@@ -4,6 +4,38 @@ This file contains a complete enumeration of all [pull requests](https://github.
 for a given releases. Unreleased, upcoming changes will be updated here periodically; reference the next release on our
 [milestones](https://github.com/liip/LiipImagineBundle/milestones) page for the latest changes.
 
+# 2.x
+
+## [2.13.3](https://github.com/liip/LiipImagineBundle/tree/2.13.3)
+
+- Prevent InvalidArgumentException from FileinfoMimeTypeGuesser when chain loading an image that is not a file ([revoltek-daniel](https://github.com/liip/LiipImagineBundle/pull/1614))
+
+## [2.13.2](https://github.com/liip/LiipImagineBundle/tree/2.13.2)
+
+- Remove deprecated spaceless filter from twig template ([JohJohan](https://github.com/liip/LiipImagineBundle/pull/1609))
+
+## [2.13.1](https://github.com/liip/LiipImagineBundle/tree/2.13.1)
+
+- Fix Json Manifest handling when manifest file does not exist yet ([AirBair](https://github.com/liip/LiipImagineBundle/pull/1600))
+
+## [2.13.0](https://github.com/liip/LiipImagineBundle/tree/2.13.0)
+
+- Support JsonManifestVersionStrategy that was added in Symfony 6 ([wouterSkepp](https://github.com/liip/LiipImagineBundle/pull/1529)).
+
+## [2.12.3](https://github.com/liip/LiipImagineBundle/tree/2.12.3)
+
+- Add alias for `Imagine\Image\ImagineInterface` to help autowiring ([dbu](https://github.com/liip/LiipImagineBundle/pull/1583)). 
+
+## [2.12.2](https://github.com/liip/LiipImagineBundle/tree/2.12.2)
+
+- Autoconfigure tags `'liip_imagine.filter.loader`, `liip_imagine.filter.post_processor` and `liip_imagine.binary.loader`
+  and allow to specify these by class name in addition to service names ([homersimpsons](https://github.com/liip/LiipImagineBundle/pull/1486))
+- Avoid PHP 8.3 warning with default empty prefix ([simonberger](https://github.com/liip/LiipImagineBundle/pull/1568))
+
+## [2.12.1](https://github.com/liip/LiipImagineBundle/tree/2.12.1)
+
+- Adjustments to install with Symfony 7 ([mbabker](https://github.com/liip/LiipImagineBundle/pull/1535))
+
 ## [2.12.0](https://github.com/liip/LiipImagineBundle/tree/2.12.0)
 
 - Fix documentation filter command parameter name ([rdavaillaud](https://github.com/liip/LiipImagineBundle/pull/1515))

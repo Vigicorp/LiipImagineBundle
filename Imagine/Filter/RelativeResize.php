@@ -31,12 +31,12 @@ class RelativeResize implements FilterInterface
      * @param string $method    BoxInterface method
      * @param mixed  $parameter Parameter for BoxInterface method
      *
-     * @throws \Imagine\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function __construct($method, $parameter)
     {
         if (!\in_array($method, ['heighten', 'increase', 'scale', 'widen'], true)) {
-            throw new InvalidArgumentException(sprintf('Unsupported method: %s', $method));
+            throw new InvalidArgumentException(\sprintf('Unsupported method: %s', $method));
         }
 
         $this->method = $method;

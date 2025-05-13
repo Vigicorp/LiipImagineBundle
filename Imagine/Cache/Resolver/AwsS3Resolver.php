@@ -144,7 +144,7 @@ class AwsS3Resolver implements ResolverInterface
 
         if (empty($paths)) {
             try {
-                $this->storage->deleteMatchingObjects($this->bucket, null, sprintf(
+                $this->storage->deleteMatchingObjects($this->bucket, null, \sprintf(
                     '/%s/i',
                     implode('|', $filters)
                 ));
@@ -188,7 +188,7 @@ class AwsS3Resolver implements ResolverInterface
      *
      * If the option is already set, it will be overwritten.
      *
-     * @see \Aws\S3\S3Client::getObjectUrl() for available options
+     * @see S3Client::getObjectUrl() for available options
      *
      * @param string $key   The name of the option
      * @param mixed  $value The value to be set
@@ -207,7 +207,7 @@ class AwsS3Resolver implements ResolverInterface
      *
      * If the option is already set, it will be overwritten.
      *
-     * @see \Aws\S3\S3Client::putObject() for available options
+     * @see S3Client::putObject() for available options
      *
      * @param string $key   The name of the option
      * @param mixed  $value The value to be set
@@ -232,8 +232,8 @@ class AwsS3Resolver implements ResolverInterface
     protected function getObjectPath($path, $filter)
     {
         $path = $this->cachePrefix
-            ? sprintf('%s/%s/%s', $this->cachePrefix, $filter, $path)
-            : sprintf('%s/%s', $filter, $path);
+            ? \sprintf('%s/%s/%s', $this->cachePrefix, $filter, $path)
+            : \sprintf('%s/%s', $filter, $path);
 
         return str_replace('//', '/', $path);
     }

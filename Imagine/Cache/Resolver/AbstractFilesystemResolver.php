@@ -52,7 +52,7 @@ abstract class AbstractFilesystemResolver implements ResolverInterface, CacheMan
         $this->filesystem = $filesystem;
     }
 
-    public function setRequest(Request $request = null)
+    public function setRequest(?Request $request = null)
     {
         $this->request = $request;
     }
@@ -163,7 +163,7 @@ abstract class AbstractFilesystemResolver implements ResolverInterface, CacheMan
                 $this->filesystem->mkdir($dir);
                 $this->filesystem->chmod($dir, $this->folderPermissions);
             } catch (IOException $e) {
-                throw new \RuntimeException(sprintf('Could not create directory %s', $dir), 0, $e);
+                throw new \RuntimeException(\sprintf('Could not create directory %s', $dir), 0, $e);
             }
         }
     }

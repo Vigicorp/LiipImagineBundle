@@ -56,7 +56,7 @@ final class PsrCacheResolver implements ResolverInterface
      * * index_key
      *   The name of the index key being used to save a list of created cache keys regarding one image and filter pairing.
      */
-    public function __construct(CacheItemPoolInterface $cache, ResolverInterface $cacheResolver, array $options = [], OptionsResolver $optionsResolver = null)
+    public function __construct(CacheItemPoolInterface $cache, ResolverInterface $cacheResolver, array $options = [], ?OptionsResolver $optionsResolver = null)
     {
         $this->cache = $cache;
         $this->resolver = $cacheResolver;
@@ -250,9 +250,9 @@ final class PsrCacheResolver implements ResolverInterface
         ]);
 
         $allowedTypesList = [
-          'global_prefix' => 'string',
-          'prefix' => 'string',
-          'index_key' => 'string',
+            'global_prefix' => 'string',
+            'prefix' => 'string',
+            'index_key' => 'string',
         ];
 
         foreach ($allowedTypesList as $option => $allowedTypes) {
