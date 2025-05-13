@@ -111,12 +111,12 @@ class CacheManager
         if (!empty($runtimeConfig)) {
             $rcPath = $this->getRuntimePath($path, $runtimeConfig);
 
-            return !$this->webpGenerate && $this->isStored($rcPath, $filter, $resolver) ?
+            return $this->isStored($rcPath, $filter, $resolver) ?
                 $this->resolve($rcPath, $filter, $resolver) :
                 $this->generateUrl($path, $filter, $runtimeConfig, $resolver, $referenceType);
         }
 
-        return !$this->webpGenerate && $this->isStored($path, $filter, $resolver) ?
+        return $this->isStored($path, $filter, $resolver) ?
             $this->resolve($path, $filter, $resolver) :
             $this->generateUrl($path, $filter, [], $resolver, $referenceType);
     }

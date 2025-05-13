@@ -91,8 +91,7 @@ class ImagineController
             return $this->filterService->getUrlOfFilteredImage(
                 $path,
                 $filter,
-                $resolver,
-                $this->isWebpSupported($request)
+                $resolver
             );
         }, $path, $filter);
     }
@@ -129,8 +128,7 @@ class ImagineController
                 $path,
                 $filter,
                 $runtimeConfig,
-                $resolver,
-                $this->isWebpSupported($request)
+                $resolver
             );
         }, $path, $filter, $hash);
     }
@@ -171,10 +169,5 @@ class ImagineController
         } catch (RuntimeException $exception) {
             throw new \RuntimeException(vsprintf('Unable to create image for path "%s" and filter "%s". Message was "%s"', [$hash ? \sprintf('%s/%s', $hash, $path) : $path, $filter, $exception->getMessage()]), 0, $exception);
         }
-    }
-
-    private function isWebpSupported(Request $request): bool
-    {
-        return false !== mb_stripos($request->headers->get('accept', ''), 'image/webp');
     }
 }

@@ -117,13 +117,13 @@ class FilterService
      *
      * @return string
      */
-    public function getUrlOfFilteredImage($path, $filter, $resolver = null, bool $webpSupported = false)
+    public function getUrlOfFilteredImage($path, $filter, $resolver = null)
     {
         foreach ($this->buildFilterPathContainers($path) as $filterPathContainer) {
             $this->warmUpCacheFilterPathContainer($filterPathContainer, $filter, $resolver);
         }
 
-        return $this->resolveFilterPathContainer(new FilterPathContainer($path), $filter, $resolver, $webpSupported);
+        return $this->resolveFilterPathContainer(new FilterPathContainer($path), $filter, $resolver);
     }
 
     /**
@@ -137,8 +137,7 @@ class FilterService
         $path,
         $filter,
         array $runtimeFilters = [],
-        $resolver = null,
-        bool $webpSupported = false
+        $resolver = null
     ) {
         $runtimePath = $this->cacheManager->getRuntimePath($path, $runtimeFilters);
         $runtimeOptions = [
@@ -152,8 +151,7 @@ class FilterService
         return $this->resolveFilterPathContainer(
             new FilterPathContainer($path, $runtimePath, $runtimeOptions),
             $filter,
-            $resolver,
-            $webpSupported
+            $resolver
         );
     }
 
@@ -177,12 +175,11 @@ class FilterService
     private function resolveFilterPathContainer(
         FilterPathContainer $filterPathContainer,
         string $filter,
-        ?string $resolver = null,
-        bool $webpSupported = false
+        ?string $resolver = null
     ): string {
         $path = $filterPathContainer->getTarget();
 
-        if ($this->webpGenerate && $webpSupported) {
+        if ($this->webpGenerate) {
             $path = $filterPathContainer->createWebp($this->webpOptions)->getTarget();
         }
 
