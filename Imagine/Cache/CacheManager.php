@@ -108,20 +108,21 @@ class CacheManager
      */
     public function getBrowserPath($path, $filter, array $runtimeConfig = [], $resolver = null, $referenceType = UrlGeneratorInterface::ABSOLUTE_URL)
     {
+        $finalPath = $path;
         if ($this->webpGenerate) {
-            $path .= '.webp';
+            $finalPath = $path . '.webp';
         }
 
         if (!empty($runtimeConfig)) {
-            $rcPath = $this->getRuntimePath($path, $runtimeConfig);
+            $rcPath = $this->getRuntimePath($finalPath, $runtimeConfig);
 
             return $this->isStored($rcPath, $filter, $resolver) ?
                 $this->resolve($rcPath, $filter, $resolver) :
                 $this->generateUrl($path, $filter, $runtimeConfig, $resolver, $referenceType);
         }
 
-        return $this->isStored($path, $filter, $resolver) ?
-            $this->resolve($path, $filter, $resolver) :
+        return $this->isStored($finalPath, $filter, $resolver) ?
+            $this->resolve($finalPath, $filter, $resolver) :
             $this->generateUrl($path, $filter, [], $resolver, $referenceType);
     }
 
