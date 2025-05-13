@@ -108,6 +108,10 @@ class CacheManager
      */
     public function getBrowserPath($path, $filter, array $runtimeConfig = [], $resolver = null, $referenceType = UrlGeneratorInterface::ABSOLUTE_URL)
     {
+        if ($this->webpGenerate) {
+            $path .= '.webp';
+        }
+
         if (!empty($runtimeConfig)) {
             $rcPath = $this->getRuntimePath($path, $runtimeConfig);
 
